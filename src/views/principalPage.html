@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodos Numericos</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>ANALISIS DE ERRORES</h1>
+
+    </header>
+    
+    <div class="col">
+        <button type="button" class="btn btn-primary">Punto flotante</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary">Punto 2</button>
+
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary">Punto 3</button>
+    </div>
+
+
+
+    <div class="card boder-primary mb-3" style="max-width: 300px;">
+        <form action="">
+        
+            <div class="card-header">
+                <h3 class="card-title">Punto Flotante</h3>      
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <fieldset>
+                        <label class="control-label" for="numero">Numeros:</label><br>
+                        <input class="form-control"    type="text" name="numero" placeholder="Numero" >
+
+                    </fieldset>
+                    
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <label class="control-label" for="numero">Numeros de Bits Mantisa:</label><br>
+                        <input class="form-control" type="text" name="numero" placeholder="Numero" >
+
+                    </fieldset>
+
+                </div>
+                
+                <div class="form-group">
+                    <fieldset>
+                        <label class="control-label" for="numero">Numeros de Bits Exponente:</label><br>
+                        <input class="form-control" type="text" name="numero" placeholder="Numero" >
+
+                    </fieldset>
+
+                </div>
+                <input class="btn btn-primary"  type="submit" value="Enviar">
+            </div>
+ 
+        </form>
+
+    </div>
+    <h2>Resultado:</h2>
+    <div class="card border-secondary mb-3" style="max-width: 300px;">
+        <div class="card-body">
+            valor
+        </div>
+    </div>
+
+    <div class="card border-secondary mb-3" style="max-width: 300px;">
+        <div class="card-header">
+            <h3 class="title">Pasos</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                <b>Numero: </b> []<br>
+                <b>Paso 1:</b>  se convierte el numero [] en Binario<br>
+                Numero Binario:[] <br>
+                <b>Paso 2:</b> Se normaliza el numero binario [] rodando la coma(.)[exponente]
+                obteniendo la normalizacion. <br>
+                Numero Normalizado:[] <br>
+                <b>Paso 3:</b> se saca el signo[] <br>
+                <b>Paso 4:</b> Se saca la mantisa del numero binario normalizado <br>
+                Mantisa: [] <br>
+                <b>Paso 5:</b> El exponente tiene un tamaño [] Bits, sacamos el exponente maximo
+                dividiendo [valor de exponente]/2 =[resultado] <br>
+                <b>Paso 6:</b> Luego para sacar el exponente 
+                sumamos  exponente maximo entre [e es 2^6 no se como llamarlo] [exp_max]+[e]=[resultado de exp] <br> 
+                <b>Paso 7:</b> luego convertimos [resultado exp] a binario. <br>
+                Exp: [exp en binario]
+            </p>
+        </div>
+
+    </div>
+    
+    
+    
+    
+</body>
+</html>
