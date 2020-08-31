@@ -27,8 +27,8 @@ app.on('ready', () => {
 
     ipcMain.on('process:DecimalAFlotante', (e, objectProcess) => {
         processWindows = new BrowserWindow({
-            height: 350,
-            width: 550,
+            height: 400,
+            width: 350,
             webPreferences: {
                 nodeIntegration: true
             }

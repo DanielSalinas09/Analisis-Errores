@@ -192,6 +192,7 @@ decimalAFlotante.addEventListener('click', () => {
         `;
         document.getElementById('verProcedimiento').addEventListener('click', () => {
             let objectProcess = {
+                "bitExp":bitExp,
                 "numero": numero,
                 "numeroBinario": num,
                 "numeroNormalizado": numeroNormalizado,

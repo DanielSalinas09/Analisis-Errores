@@ -1,24 +1,27 @@
 const { ipcRenderer } = require('electron');
 
 
-function templateDecimalToFlotante() {
+function templateDecimalToFlotante(objetProcess) {
     return `
-    <div class="card border-secondary mb-3" style="max-width: 500px;">
-    <div class="card-header">
-        <h3 class="title">Pasos</h2>
-    </div>
-    <div class="card-body">
-        <p>
-            <b>Numero: </b> []<br>
-            <b>Paso 1:</b> se convierte el numero [] en Binario<br> Numero Binario:[] <br>
-            <b>Paso 2:</b> Se normaliza el numero binario [] rodando la coma(.)[exponente] obteniendo la normalizacion. <br> Numero Normalizado:[] <br>
-            <b>Paso 3:</b> se saca el signo[] <br>
-            <b>Paso 4:</b> Se saca la mantisa del numero binario normalizado <br> Mantisa: [] <br>
-            <b>Paso 5:</b> El exponente tiene un tamaño [] Bits, sacamos el exponente maximo dividiendo [valor de exponente]/2 =[resultado] <br>
-            <b>Paso 6:</b> Luego para sacar el exponente sumamos exponente maximo entre [e es 2^6 no se como llamarlo] [exp_max]+[e]=[resultado de exp] <br>
-            <b>Paso 7:</b> luego convertimos [resultado exp] a binario. <br> Exp: [exp en binario]
-        </p>
-    </div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 300px;">
+        <div class="card-header">
+            <h3 class="title">Pasos</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                <b>Numero: </b>${objetProcess.numero} <br>
+                <b>Paso 1:</b> se convierte el numero ${objetProcess.numero} en Binario
+                <b>Paso 2:</b> Se normaliza el numero binario ${objetProcess.numeroBinario} rodando la coma(.) ${objetProcess.exponenteDecimal} hacia la izquierda obteniendo la normalizacion. <br> Numero Normalizado:${objetProcess.numeroNormalizado} <br>
+                <b>Paso 3:</b> se saca el signo ${objetProcess.signo} <br>
+                <b>Paso 4:</b> Se saca la mantisa del numero binario normalizado <br> Mantisa: ${objetProcess.mantisa} <br>
+                <b>Paso 5:</b> El exponente tiene un tamaño ${objetProcess.exp} Bits,<br> 
+                <b>Paso 6: </b>sacamos el exponente maximo ${objetProcess.exponenteMax} <br>
+                <b>Paso 7:</b> Luego para sacar el exponente sumamos ${objetProcess.exponente}<br>
+                <h4>Resultado</h4>
+                <h5>${objetProcess.signo} ${objetProcess.exponente} ${objetProcess.mantisa}</h5>
+                
+            </p>
+        </div>
     
     </div>
     `
@@ -27,8 +30,10 @@ function templateDecimalToFlotante() {
 
 ipcRenderer.on('process:viewDecimal', (e, objetProcess) => {
     console.log(objetProcess);
-    document.getElementById('main').innerHTML = templateDecimalToFlotante();
+    
+    document.getElementById('main').innerHTML = templateDecimalToFlotante(objetProcess);
     // document.write(objetProcess.signo + " " + objetProcess.mantisa)
+    
 });
 
 ipcRenderer.on('process:viewFlotante', (e, objetProcess) => {
@@ -36,3 +41,5 @@ ipcRenderer.on('process:viewFlotante', (e, objetProcess) => {
     // document.getElementById('main').innerHTML = templateDecimalToFlotante();
     // document.write(objetProcess.signo + " " + objetProcess.mantisa)
 });
+
+
