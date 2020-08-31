@@ -44,10 +44,6 @@ let TemplateDecimalAFlotante = `
         </div>
         <button class="btn btn-outline-primary" id="verProcedimiento">ver procedimiento</button>
     </div>
-
-
-
-
 `
 
 let TemplateFlotanteADecimal = `
@@ -77,28 +73,30 @@ let TemplateFlotanteADecimal = `
     </div>
     <button class="btn btn-outline-primary" id="verProcedimiento2">ver procedimiento</button>
 </div>
-
-
-
-<!-- <div class="card border-secondary mb-3" style="max-width: 500px;">
-    <div class="card-header">
-        <h3 class="title">Pasos</h2>
-    </div>
-    <div class="card-body">
-        <p>
-            <b>Numero: </b> []<br>
-            <b>Paso 1:</b> se convierte el numero [] en Binario<br> Numero Binario:[] <br>
-            <b>Paso 2:</b> Se normaliza el numero binario [] rodando la coma(.)[exponente] obteniendo la normalizacion. <br> Numero Normalizado:[] <br>
-            <b>Paso 3:</b> se saca el signo[] <br>
-            <b>Paso 4:</b> Se saca la mantisa del numero binario normalizado <br> Mantisa: [] <br>
-            <b>Paso 5:</b> El exponente tiene un tamaño [] Bits, sacamos el exponente maximo dividiendo [valor de exponente]/2 =[resultado] <br>
-            <b>Paso 6:</b> Luego para sacar el exponente sumamos exponente maximo entre [e es 2^6 no se como llamarlo] [exp_max]+[e]=[resultado de exp] <br>
-            <b>Paso 7:</b> luego convertimos [resultado exp] a binario. <br> Exp: [exp en binario]
-        </p>
-    </div>
-
-</div> -->
 `
+
+let epsilonTemplate = `
+<div class="card boder-primary mb-3" style="max-width: 500px; border-radius:15px;">
+    <form action="">
+        <div class="card-header">
+            <h3 class="card-title">Calcular epsilon</h3>
+        </div>
+        <div class="card-body">
+            <input class="btn btn-primary border" type="submit" id="submitEpsilon" value="Calcular">
+        </div>
+    </form>
+</div>
+
+<div style ="display:none">
+    <h2>Resultado:</h2>
+    <div class="card border-secondary mb-3" style="max-width: 300px;">
+        <div class="card-body" id="resultadoEpsilon">
+            
+        </div>
+    </div>
+</div>
+`;
+
 decimalAFlotante.addEventListener('click', () => {
 
     if (!decimalAFlotante.classList.contains('active')) {
@@ -384,10 +382,29 @@ epsilon.addEventListener('click', () => {
         }
         epsilon.classList.add('active')
     } //comprobar cual clase tiene active y añadir active a la clase seleccionada
-    main.innerHTML = "";
+    main.innerHTML = epsilonTemplate;
 
 
     //logica
+    const btnEpsilon = document.getElementById('submitEpsilon');
+    btnEpsilon.addEventListener('click', (e) => {
+        console.log("aja");
+        let epsilon = 1;
+
+        while ((epsilon + 1) > 1) {
+            epsilon = epsilon / 2;
+        }
+
+        epsilon = epsilon * 2;
+        let element = document.getElementById('resultadoEpsilon');
+        element.parentElement.parentElement.style = "display:block;";
+        element.innerHTML = epsilon;
+
+        e.preventDefault();
+    });
+
+
+
 });
 
 decimalAFlotante.click();
