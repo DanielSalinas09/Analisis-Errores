@@ -28,6 +28,39 @@ function templateDecimalToFlotante(objetProcess) {
 };
 
 
+function templateFlotanteADecimal(objetProcess) {
+    return `
+    <div class="card text-white bg-primary mb-3" style="max-width: 300px;">
+        <div class="card-header">
+            <h3 class="title">Pasos</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                <b>Numero: </b>${objetProcess.numero} <br>
+                <b>Paso 1:</b> se saca la mantiza, signo y exponente<br>
+                Signo: ${objetProcess.signo} <br>
+                Exponente:s
+                Mantiza:
+                <b>Paso 2:</b>  se calcula el exponente con la formula exp - int(expMax/2). <br>
+                <b>Paso 3:</b>  se escribe el numero y se reserva un bit adicional por lo cual querada (signo) 1.(mantiza)x2^exp<br>
+                <b>Paso 4:</b> se calcula el binario guardado multiplicando eñ numero por el exponente <br>
+                <b>Paso 5:</b> pasar el binario a decimal Bits,<br> 
+                
+                <h4>Resultado</h4>
+                <h5>${objetProcess.signo} ${objetProcess.exponente} ${objetProcess.mantisa}</h5>
+                
+            </p>
+        </div>
+    
+    </div>
+    `
+};
+
+
+
+
+
+
 ipcRenderer.on('process:viewDecimal', (e, objetProcess) => {
     console.log(objetProcess);
     
@@ -38,6 +71,8 @@ ipcRenderer.on('process:viewDecimal', (e, objetProcess) => {
 
 ipcRenderer.on('process:viewFlotante', (e, objetProcess) => {
     console.log(objetProcess);
+    
+    document.getElementById('main').innerHTML = templateFlotanteADecimal(objetProcess);
     // document.getElementById('main').innerHTML = templateDecimalToFlotante();
     // document.write(objetProcess.signo + " " + objetProcess.mantisa)
 });

@@ -365,8 +365,20 @@ flotanteADecimal.addEventListener('click', () => {
         
         `
         document.getElementById('verProcedimiento2').addEventListener('click', () => {
-
-            ipcRenderer.send('process:flotanteADecimal', "hola desde la otra ventana ")
+            
+            let objectProcess2 = {
+                "bitExp":bitExp,
+                "numero": num,
+                "numeroBinario": num,
+                "numeroNormalizado": numeroNormalizado,
+                "signo": signo,
+                "exponente": exponente,
+                "exponenteMax": expMayor,
+                "exp": exp,
+                "exponenteDecimal": e,
+                "mantisa": mantizas
+            }
+            ipcRenderer.send('process:flotanteADecimal', objectProcess2)
         });
     }
 
