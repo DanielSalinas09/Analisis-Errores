@@ -1,0 +1,32 @@
+#main {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#result {
+    display: flex;
+}
+
+body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-button:increment,
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
