@@ -22,3 +22,10 @@ header {
 #result {
     display: flex;
 }
+
+footer {
+    margin-left: 20px;
+    display: block;
+    position: absolute;
+    bottom: 1em;
+}

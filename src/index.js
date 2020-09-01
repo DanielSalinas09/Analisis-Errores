@@ -52,7 +52,7 @@ app.on('ready', () => {
     ipcMain.on('process:flotanteADecimal', (e, objectProcess) => {
         processWindows = new BrowserWindow({
             height: 350,
-            width: 550,
+            width: 350,
             webPreferences: {
                 nodeIntegration: true
             }
