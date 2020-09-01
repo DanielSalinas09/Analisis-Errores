@@ -1,6 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, ipcRenderer } = require('electron');
 const url = require('url');
 const path = require('path');
+const main = require('electron-reload');
 
 if (process.env.NODE_ENV !== 'prodution')
     require('electron-reload')(__dirname, {
@@ -12,17 +13,21 @@ let processWindows;
 app.on('ready', () => {
 
     mainWindow = new BrowserWindow({
-            height: 550,
-            width: 850,
-            webPreferences: {
-                nodeIntegration: true
-            }
-        }),
+        height: 550,
+        width: 850,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    }),
         mainWindow.loadURL(url.format({
             pathname: path.join(__dirname, 'views/principalPage.html'),
             protocol: 'file',
 
         }));
+    const mainMenu = Menu.buildFromTemplate(templateMenu);
+
+    Menu.setApplicationMenu(mainMenu);
+
 
 
     ipcMain.on('process:DecimalAFlotante', (e, objectProcess) => {
@@ -43,6 +48,7 @@ app.on('ready', () => {
             processWindows.webContents.send('process:viewDecimal', objectProcess);
         })
     });
+
     ipcMain.on('process:flotanteADecimal', (e, objectProcess) => {
         processWindows = new BrowserWindow({
             height: 350,
@@ -62,3 +68,25 @@ app.on('ready', () => {
         })
     });
 });
+
+
+const templateMenu = [
+    {
+        label: 'View',
+        submenu: [
+            {
+                label: 'Punto Flotante a Decimal',
+                acelerator: 'CTRL+F',
+                click() {
+                    mainWindow.webContents.on('did-finish-load', () => {
+                        mainWindow.webContents.send('Menu:flotanteDecimal');
+                        
+                    });
+                }
+            
+            }
+        ]
+
+    },
+
+]

@@ -368,23 +368,26 @@ flotanteADecimal.addEventListener('click', () => {
             
             let objectProcess2 = {
                 "bitExp":bitExp,
-                "numero": num,
+                
                 "numeroBinario": num,
-                "numeroNormalizado": numeroNormalizado,
+                
                 "signo": signo,
                 "exponente": exponente,
                 "exponenteMax": expMayor,
                 "exp": exp,
                 "exponenteDecimal": e,
-                "mantisa": mantizas
+                "mantisa": mantiza
             }
             ipcRenderer.send('process:flotanteADecimal', objectProcess2)
         });
     }
 
-
-
 });
+
+
+ipcRenderer.on('Menu:flotanteDecimal', e =>{
+    flotanteADecimal.click();
+})
 
 epsilon.addEventListener('click', () => {
     if (!epsilon.classList.contains('active')) {
