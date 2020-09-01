@@ -190,7 +190,7 @@ decimalAFlotante.addEventListener('click', () => {
         `;
         document.getElementById('verProcedimiento').addEventListener('click', () => {
             let objectProcess = {
-                "bitExp":bitExp,
+                "bitExp": bitExp,
                 "numero": numero,
                 "numeroBinario": num,
                 "numeroNormalizado": numeroNormalizado,
@@ -230,10 +230,12 @@ flotanteADecimal.addEventListener('click', () => {
 
 
     function FlotanteADecimal() {
-        let bitMantiza, bitExp, bits; //1011010.101011 || -90.671575
+        let numeroBinario = '',
+            bitExp, bits; //1011010.101011 || -90.671575
         let exp, num, numArray = [],
             expMayor, exponente;
         let mantisaSting = "",
+            e,
             signo = "0";
         let mantiza = [],
             aux = [];
@@ -322,15 +324,13 @@ flotanteADecimal.addEventListener('click', () => {
             console.log(numArray);
             numArray.splice(1, 1);
             numArray.splice(exp + 1, 0, '.');
-            numeroBinarioNormalizado = '';
             for (let i = 0; i < numArray.length; i++) {
 
-                numeroBinarioNormalizado += numArray[i];
+                numeroBinario += numArray[i];
 
             }
-
+            console.log(exp);
             partDecimal = numArray.splice(exp + 2, numArray.length);
-
             for (let i = 0; i < partDecimal.length; i++) {
                 parteDecimalBinario += partDecimal[i];
 
@@ -341,7 +341,7 @@ flotanteADecimal.addEventListener('click', () => {
 
 
         console.log(parteDecimalBinario);
-        console.log("numero binario : ", numeroBinarioNormalizado);
+        console.log("numero binario : ", numeroBinario);
         let decimal = 0;
 
         for (let i = 0; i < parteDecimalBinario.length; i++) {
@@ -352,7 +352,7 @@ flotanteADecimal.addEventListener('click', () => {
         }
 
         console.log("parte flotante ", decimal);
-        let numeroBaseDies = parseInt(numeroBinarioNormalizado, 2) + decimal;
+        let numeroBaseDies = parseInt(numeroBinario, 2) + decimal;
         if (signo[0] == '1') {
             numeroBaseDies = numeroBaseDies * (-1);
         }
@@ -365,19 +365,22 @@ flotanteADecimal.addEventListener('click', () => {
         
         `
         document.getElementById('verProcedimiento2').addEventListener('click', () => {
-            
+
+            console.log(num);
             let objectProcess2 = {
-                "bitExp":bitExp,
+                "bitExp": bitExp,
                 "numero": num,
-                "numeroBinario": num,
-                "numeroNormalizado": numeroNormalizado,
+                "numeroBinario": numeroBinario,
+                "numeroBinarioNormalizado": numeroBinarioNormalizado,
                 "signo": signo,
-                "exponente": exponente,
+                "exponente": exponenteString,
                 "exponenteMax": expMayor,
                 "exp": exp,
-                "exponenteDecimal": e,
-                "mantisa": mantizas
+                // "exponenteDecimal": e,
+                "mantisa": mantisaSting,
+                "numeroBaseDies": numeroBaseDies
             }
+            console.log(objectProcess2);
             ipcRenderer.send('process:flotanteADecimal', objectProcess2)
         });
     }
@@ -401,7 +404,6 @@ epsilon.addEventListener('click', () => {
     //logica
     const btnEpsilon = document.getElementById('submitEpsilon');
     btnEpsilon.addEventListener('click', (e) => {
-        console.log("aja");
         let epsilon = 1;
 
         while ((epsilon + 1) > 1) {
