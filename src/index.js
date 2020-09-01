@@ -75,7 +75,7 @@ const templateMenu = [
         label: 'View',
         submenu: [
             {
-                label: 'Punto Flotante a Decimal',
+                label: 'Punto Decimal a Flotante',
                 acelerator: 'CTRL+F',
                 click() {
                     mainWindow.webContents.on('did-finish-load', () => {
@@ -84,6 +84,25 @@ const templateMenu = [
                     });
                 }
             
+            },
+            {
+                label: "Punto Flotante a Decimal",
+                acelerator: "CTRL+F",
+                click(){
+
+                }
+            },
+            {
+                label: "Epsilon",
+                acelerator:"CTRL+E",
+                click(){
+
+                }
+            },
+            {
+                label:"Salir",
+                acelerator:"CTRL+Q",
+                click(){}
             }
         ]
 
